@@ -1,2 +1,0 @@
-django==2.2.2
-pylint-django==2.4.4
