@@ -28,12 +28,13 @@ class InquiryView(generic.FormView):
         return super().form_valid(form)
 
 
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from .models import Diary
-# class DiaryListView(LoginRequiredMixin, generic.ListView):
-#     model = Diary
-#     template_name = 'diary_list.html'
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Diary
+class DiaryListView(LoginRequiredMixin, generic.ListView):
+    model = Diary
+    template_name = 'diary_list.html'
+    paginate_by = 2
 
-#     def get_queryset(self):
-#         diaries = Diary.objects.filter(user=self.request.user).order_by('-created_at')
-#         return diaries
+    def get_queryset(self):
+        diaries = Diary.objects.filter(user=self.request.user).order_by('-created_at')
+        return diaries
